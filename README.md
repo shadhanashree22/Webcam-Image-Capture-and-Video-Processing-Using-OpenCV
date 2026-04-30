@@ -43,26 +43,117 @@ Resize the frame and rotate it using OpenCV functions, then display the processe
 ## 💻 Program
 
 ### Developed By:
-**Name:** ____________________________  
+**Name:** ________S V SHADHANASHREE____________________  
 
 ### Register No:
-____________________________  
+________________212223230202____________  
+
+
+```
+import cv2
+import matplotlib.pyplot as plt
+from IPython.display import clear_output
+import time
+
+# ------------------ Capture Single Frame ------------------
+cap = cv2.VideoCapture(0)
+
+ret, frame = cap.read()
+if ret:
+    cv2.imwrite("captured_frame.jpg", frame)
+
+cap.release()
+
+# Display captured image
+captured_image = cv2.imread('captured_frame.jpg')
+plt.imshow(captured_image[:, :, ::-1])
+plt.title('Captured Frame')
+plt.axis('off')
+plt.show()
+
+
+# ------------------ Live Camera Feed ------------------
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+
+    time.sleep(0.05)
+
+cap.release()
+
+
+# ------------------ Resized Video ------------------
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    resized_frame = cv2.resize(frame, (100, 150))
+    frame_rgb = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2RGB)
+
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+
+    time.sleep(0.05)
+
+cap.release()
+
+
+# ------------------ Rotated Video ------------------
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    rotated_frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+    frame_rgb = cv2.cvtColor(rotated_frame, cv2.COLOR_BGR2RGB)
+
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+
+    time.sleep(0.05)
+
+cap.release()
+
+```
 
 ---
 
 ## Output
 
 ### i) Write the frame as JPG image
-Captured image is saved as `captured_image.jpg`
+<img width="512" height="409" alt="image" src="https://github.com/user-attachments/assets/62ff7a1a-91b5-4cb3-b948-e6b877de9565" />
+
 
 ### ii) Display the video
-Live webcam video is displayed
+<img width="512" height="389" alt="image" src="https://github.com/user-attachments/assets/5cea8c29-080c-4d82-b155-c5aa3d21b628" />
+
 
 ### iii) Display the video by resizing the window
-Video is shown in resized resolution (640 × 480)
+<img width="266" height="389" alt="image" src="https://github.com/user-attachments/assets/0eff5f4c-d3db-4502-ba5a-7d033af1c96b" />
+
 
 ### iv) Rotate and display the video
-Video is displayed after rotation (90° clockwise)
+<img width="297" height="389" alt="image" src="https://github.com/user-attachments/assets/dcac3ea9-c7ee-41f4-a8d8-e191fb105ccb" />
+
 
 ---
 
